@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo cinco Vue.js - Components</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{title}}</p>
+      <app-user></app-user>
+    </div>
+  </body>
+  <script type="text/javascript">
+    Vue.component('app-user', {
+      data: function() {
+        return {
+          users: [
+            {username: 'joeltinx'},
+            {username: 'aporras'},
+            {username: 'hgarcia'},
+          ]
+        };
+      },
+      template: `<div>
+                    <div class="user" v-for="user in users">
+                      <p>Username: {{user.username}}</p>
+                      </div>
+                    </div>`
+    });
+
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Hello world!',
+      },
+      computed: {
+
+      },
+      filters: {
+
+      },
+    })
+  </script>
+</html>

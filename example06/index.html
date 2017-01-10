@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo cuatro Vue.js</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{messageUC}}</p>
+      <p>{{message2 | uppercase}}</p>
+      <p>{{message3 | lowercase}}</p>
+    </div>
+  </body>
+  <script type="text/javascript">
+    Vue.filter('uppercase', function(value) {
+      return value.toUpperCase();
+    });
+
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'it is a message',
+        message2: 'it is other message',
+        message3: 'IT IS A 3º MESSAGE'
+      },
+      computed: {
+        messageUC: function() {
+          return this.message.toUpperCase();
+        }
+      },
+      filters: {
+        lowercase: function(value) {
+          return value.toLowerCase();
+        }
+      },
+    })
+  </script>
+</html>
