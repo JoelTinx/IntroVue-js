@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="test" v-model="nuevaTarea">
+      <input type="submit" v-on:click="guardarTarea" value="Agregar Tarea">
+      <ul v-for="tarea in tareas">
+        <li><span>{{tarea.nombre}}</span><a href="#" v-on:click="eliminarTarea(tarea)">Eliminar</a></li>
+      </ul>
+      <pre>
+        {{ $data }}
+      </pre>
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          nuevaTarea: '',
+          tareas: [
+            { nombre: 'Renunciar al trabajo' },
+            { nombre: 'Comenzar proyecto de empresa' },
+            { nombre: 'Concretar ideas' },
+            ],
+          },
+          methods: {
+            guardarTarea: function() {
+              if (this.nuevaTarea.trim()) {
+                this.tareas.push({ nombre: this.nuevaTarea });
+                this.nuevaTarea = '';
+              } else {
+                alert('Ingrese un texto');
+              }
+          },
+          eliminarTarea: function(tarea) {
+            console.log(tarea);
+            if(confirm('¿Eliminar: ' + tarea.nombre + '?')) {
+                this.tareas = this.tareas.filter(function (item) {
+                    return item.nombre != tarea.nombre;
+                });
+            }
+          },
+        }
+      })
+    </script>
+  </body>
+</html>
